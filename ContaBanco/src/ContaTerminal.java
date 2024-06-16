@@ -7,7 +7,6 @@ import java.util.Locale;
  * Inclui número da conta, nome do cliente, saldo e agência.
  * Utiliza Scanner para entrada de dados e trata exceções de entrada inválida.
  */
-
 class Conta {
     int numero;
     String agencia;
@@ -32,6 +31,8 @@ public class ContaTerminal {
             System.out.println(conta); // Imprime os detalhes da conta
         } catch (Exception e) {
             System.out.println("Ocorreu um erro ao receber os dados: " + e.getMessage());
+        } finally {
+            scanner.close(); // Fecha o Scanner para liberar recursos
         }
     }
 
