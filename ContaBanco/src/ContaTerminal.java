@@ -20,7 +20,7 @@ class Conta {
     }
 }
 
-public class Main {
+public class ContaTerminal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.US); // Define o locale para usar o ponto como separador decimal
