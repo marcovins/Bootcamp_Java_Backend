@@ -3,7 +3,8 @@
 ```mermaid
 classDiagram
     class Banco {
-        -Map<Cliente, Conta> bancoDados;
+        -List<Cliente> bancoDados;
+
     }
 
     class Operacoes {
@@ -18,6 +19,7 @@ classDiagram
         #double saldo;
         #String agencia;
         #Cliente cliente;
+        #String extrato;
 
         +double getSaldo()
         +String getAgencia()
@@ -30,17 +32,24 @@ classDiagram
         -double chequeEspecial;
         -double limiteCredito;
         -int limiteSaques;
+        -Cliente cliente;
         
         +double getChequeEspecial()
         +double getLimiteCredito()
         +int getLimiteSaques()
         +void extratoContaCorrente()
+        -void setCredito()
     }
 
     class ContaPoupanca {
         -static final double TAXA_RENDIMENTO = 0.01;
+        -Cliente cliente;
 
         +void extratoContaPoupanca()
+    }
+
+    class ContaSalario{
+        -Funcionario proprietario;
     }
 
     class Cliente {
@@ -62,8 +71,9 @@ classDiagram
         -List<Pessoal> funcionarios;
 
         +String getCnpj()
-        +void adicionarFuncionario(Pessoal funcionario)
-        +void removerFuncionario(Pessoal funcionario)
+        +List<Funcionario> getFuncionarios()
+        +void adicionarFuncionario(Funcionario funcionario)
+        +void removerFuncionario(Funcionario funcionario)
         +boolean pagarFuncionarios()
         +void exibirFolhaPagamento()
 
@@ -74,6 +84,11 @@ classDiagram
         -String cargo;
         -double salario;
         -Conta contaPagamento;
+
+        +String getNome()
+        +String getCargo()
+        +double getSalario()
+        +Conta getContaPagamento()
 
     }
 
@@ -92,8 +107,8 @@ classDiagram
     Banco "1" *--  Conta 
     Conta <|-- ContaCorrente
     Conta <|-- ContaPoupanca
-    ContaCorrente ..|> Operacoes
-    ContaPoupanca ..|> Operacoes
+    Conta <|-- ContaSalario
+    Conta ..|> Operacoes
     Cliente "1" -->  Conta 
     Cliente ..|> Empresa
     Cliente ..|> Pessoal
