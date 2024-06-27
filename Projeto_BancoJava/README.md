@@ -25,7 +25,7 @@ classDiagram
         +String getAgencia()
         +Cliente getCliente()
         +Cliente tipoConta()
-        +void aplicarTaxas()
+        +void exibirExtrato()
     }
 
     class ContaCorrente {
@@ -37,7 +37,6 @@ classDiagram
         +double getChequeEspecial()
         +double getLimiteCredito()
         +int getLimiteSaques()
-        +void extratoContaCorrente()
         -void setCredito()
     }
 
@@ -45,11 +44,12 @@ classDiagram
         -static final double TAXA_RENDIMENTO = 0.01;
         -Cliente cliente;
 
-        +void extratoContaPoupanca()
+        +void aplicarTaxa()
     }
 
     class ContaSalario{
         -Funcionario proprietario;
+
     }
 
     class Cliente {
