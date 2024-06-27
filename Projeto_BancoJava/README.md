@@ -3,7 +3,11 @@
 ```mermaid
 classDiagram
     class Banco {
-        -List<Cliente> bancoDados;
+        -Set<Cliente> clientes;
+
+        +void adicionarCliente(Cliente cliente)
+        +Cliente buscarCliente(Cliente clienteBuscar)
+        +void removerCliente(Cliente cliente)
 
     }
 
@@ -20,19 +24,19 @@ classDiagram
         #String agencia;
         #Cliente cliente;
         #String extrato;
+        #MapaDeGastos mapaDeGastos;
 
         +double getSaldo()
         +String getAgencia()
         +Cliente getCliente()
-        +Cliente tipoConta()
         +void exibirExtrato()
+        +abstract String tipoConta()
     }
 
     class ContaCorrente {
         -double chequeEspecial;
         -double limiteCredito;
         -int limiteSaques;
-        -Cliente cliente;
         
         +double getChequeEspecial()
         +double getLimiteCredito()
@@ -42,13 +46,11 @@ classDiagram
 
     class ContaPoupanca {
         -static final double TAXA_RENDIMENTO = 0.01;
-        -Cliente cliente;
 
         +void aplicarTaxa()
     }
 
     class ContaSalario{
-        -Funcionario proprietario;
 
     }
 
@@ -57,21 +59,23 @@ classDiagram
         #String nome;
         #String email;
         #String endereco;
-        #List<Conta> contas
+        #Set<Conta> contas;
+        protected static Set<String> emailsCadastrados;
 
         +String getNome()
         +String getEmail()
         +String getEndereco()
+        +Set<Conta> getContas()
         +adicionarConta(Conta conta)
         +removerConta(Conta conta)
     }
 
     class Empresa{
         -String cnpj;
-        -List<Pessoal> funcionarios;
+        -Set<Pessoal> funcionarios;
 
         +String getCnpj()
-        +List<Funcionario> getFuncionarios()
+        +Set<Funcionario> getFuncionarios()
         +void adicionarFuncionario(Funcionario funcionario)
         +void removerFuncionario(Funcionario funcionario)
         +boolean pagarFuncionarios()
@@ -94,23 +98,26 @@ classDiagram
 
     class Pessoal{
         -String cpf;
+        -static Set<String> cpfsCadastrados;
         
         +String getcpf()
     }
 
     class MapaDeGastos{
         -Map<String, double> gastos;
-
+        
+        +void adicionarGasto(String categoria, double valor)
         +void exibirGastos()
     }
 
-    Banco "1" *--  Conta 
+    Banco "1" *--  Cliente 
     Conta <|-- ContaCorrente
     Conta <|-- ContaPoupanca
     Conta <|-- ContaSalario
     Conta ..|> Operacoes
-    Cliente "1" -->  Conta 
+    Cliente "1" *-->  Conta 
     Cliente ..|> Empresa
     Cliente ..|> Pessoal
-    Pessoal "1" -- "1" MapaDeGastos
+    Cliente ..|> Funcionario
+    Conta "1" -- "1" MapaDeGastos
     Empresa "1" *-- Funcionario 
