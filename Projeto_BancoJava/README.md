@@ -25,7 +25,7 @@ classDiagram
         #Cliente cliente;
         #String extrato;
         #MapaDeGastos mapaDeGastos;
-
+        
         +double getSaldo()
         +String getAgencia()
         +Cliente getCliente()
