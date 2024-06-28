@@ -79,3 +79,4 @@ Este projeto implementa um sistema bancário básico utilizando Java, com vária
 - **JUnit**: Utilização do JUnit para criar testes unitários que validam as principais funcionalidades do sistema, como criação de clientes, adição de contas, operações bancárias e tratamento de exceções.
 
 Este projeto fornece uma base sólida para um sistema bancário simples, mas pode ser expandido para incluir funcionalidades adicionais conforme necessário.
+
