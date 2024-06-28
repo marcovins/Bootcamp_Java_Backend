@@ -29,6 +29,7 @@ classDiagram
         +double getSaldo()
         +String getAgencia()
         +Cliente getCliente()
+        +MapaDeGastos getMapaDeGastos()
         +void exibirExtrato()
         +abstract String tipoConta()
     }
