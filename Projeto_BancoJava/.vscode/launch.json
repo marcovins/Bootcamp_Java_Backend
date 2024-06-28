@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main",
+            "request": "launch",
+            "mainClass": "your.main.Class",
+            "classPaths": [
+                "lib/junit-jupiter-api-5.7.0.jar",
+                "lib/junit-jupiter-engine-5.7.0.jar",
+                "lib/apiguardian-api-1.1.0.jar",
+                "lib/opentest4j-1.2.0.jar",
+                "lib/junit-platform-commons-1.7.0.jar",
+                "lib/junit-platform-engine-1.7.0.jar"
+            ]
+        }
+    ]
+}

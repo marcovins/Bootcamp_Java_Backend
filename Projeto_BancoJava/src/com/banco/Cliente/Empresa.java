@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.banco.Excecoes.CnpjJaCadastradoException;
+import com.banco.Excecoes.EmailJaCadastradoException;
 
 public class Empresa extends Cliente {
 
@@ -11,31 +12,34 @@ public class Empresa extends Cliente {
     private Set<Funcionario> funcionarios;
     protected static Set<String> cnpjsCadastrados = new HashSet<String>();
 
-    Empresa(String nome, String email, String endereco, String cnpj) throws Exception {
-            super(nome, email, endereco);
-            if (cnpjsCadastrados.contains(cnpj)) {
-                throw new CnpjJaCadastradoException(cnpj);
-            }
-            this.cnpj = cnpj;
-            this.funcionarios = new HashSet<Funcionario>();
-            cnpjsCadastrados.add(cnpj);
+    // Construtor da classe Empresa, verifica se o CNPJ já foi cadastrado
+    public Empresa(String nome, String email, String endereco, String cnpj) throws CnpjJaCadastradoException, EmailJaCadastradoException {
+        super(nome, email, endereco);
+        if (cnpjsCadastrados.contains(cnpj)) {
+            throw new CnpjJaCadastradoException(cnpj);
+        }
+        this.cnpj = cnpj;
+        this.funcionarios = new HashSet<Funcionario>();
+        cnpjsCadastrados.add(cnpj);
     }
-        
 
+    // Retorna o CNPJ da empresa
     public String getCnpj() {
         return cnpj;
     }
 
+    // Retorna o conjunto de funcionários da empresa
     public Set<Funcionario> getFuncionarios() {
         return funcionarios;
     }
 
-    public void adicionarFuncionario(Funcionario Funcionario){
-        funcionarios.add(Funcionario);
+    // Adiciona um funcionário ao conjunto de funcionários da empresa
+    public void adicionarFuncionario(Funcionario funcionario) {
+        funcionarios.add(funcionario);
     }
 
-    public void removerFuncionario(Funcionario Funcionario){
-        funcionarios.remove(Funcionario);
+    // Remove um funcionário do conjunto de funcionários da empresa
+    public void removerFuncionario(Funcionario funcionario) {
+        funcionarios.remove(funcionario);
     }
-
 }
